@@ -15,18 +15,19 @@
                 <thead>
                   <tr>
                     <th scope="col">#ID</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Opration</th>
+                    <th scope="col">{{ __('admin.form.column.name') }}</th>
+                    <th scope="col">{{ __('admin.com.opration') }}</th>
                   </tr>
                 </thead>
                 <tbody>
                   @foreach ($formlist as $form)
                   <tr>
                     <th scope="row"><a href="{{ route('admin::form::update',['id' => $form->id]) }}">#{{ $form->id }}</a></th>
-                    <td><a href="{{ route('admin::form::update',['id' => $form->id]) }}">{{ $form->name }}</a></td>
-                    <td>
-                      <a href="{{ route('admin::form::answers',['id' => $form->id]) }}">Anwsers</a> |
-                      <a href="{{ route('admin::form::analyzerlist',['id' => $form->id]) }}">Analyzers</a>
+                    <td scope="row"><a href="{{ route('admin::form::update',['id' => $form->id]) }}">{{ $form->name }}</a></td>
+                    <td scope="row">
+                      <a href="{{ route('admin::form::answers',['id' => $form->id]) }}" class="btn btn-info btn-xs">{{ __('admin.answer.list') }}</a>
+                      <a href="{{ route('admin::form::analyzerlist',['id' => $form->id]) }}" class="btn btn-info btn-xs">{{ __('admin.analyzer.list') }}</a>
+                      <a href="{{ route('admin::form::delete',['id' => $form->id]) }}" class="btn btn-danger btn-xs">{{ __('admin.com.action.delete') }}</a>
                     </td>
                   </tr>
                   @endforeach

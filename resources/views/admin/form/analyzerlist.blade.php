@@ -10,6 +10,7 @@
         <div class="panel panel-default">
             <div class="panel-heading">{{ __('admin.analyzer.list') }}</div>
             <div class="panel-body">
+            <a title="Back" href="{{route('admin::forms')}}"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>            
               <a href="{{ route('admin::form::analyzer',['id'=>$form->id]) }}" class="btn btn-success btn-sm"><i class="fa fa-plus" aria-hidden="true"></i> {{ __('admin.com.action.add')}}</a>
               <table class="table">
                 <thead>

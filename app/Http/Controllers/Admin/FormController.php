@@ -34,6 +34,12 @@ class FormController extends Controller
         return view('admin.form.update',['form'=>$form]);
     }
 
+    public function delete($id)
+    {
+        Form::destroy($id);
+        return redirect()->route('admin::forms');
+    }
+
     //save form
     public function save(Request $request)
     {
@@ -44,13 +50,13 @@ class FormController extends Controller
         $form->fields = json_decode($request->input('formStructure'));
         $columns = [];
         foreach(json_decode($form->fields,true) as $field) {
-            //Log::info('field '.$field['name']);
+            //Log::info('field '.$field);
             $columns[$field['name']] = strip_tags($field['label']);
         };
         $form->columns = json_encode($columns);
         $form->save();
 
-        $msg = ($formid ? __("admin.msg.update_success") : __("admin.msg.save_success"));
+        $msg = ($formid ? __("admin.com.msg.update_success") : __("admin.com.msg.save_success"));
 
         return ['msg'=>$msg];
     }

@@ -16,6 +16,7 @@ return [
             'save' => 'Save',
         ],    
         'list' => 'List',
+        'opration' => 'Opration',
     ],
     'form' => [
         'column' => [
@@ -26,6 +27,10 @@ return [
     'analyzer' => [
         'name' => 'Analyzer',
         'list' => 'Analyzers',
-    ]
+    ],
+    'answer' => [
+        'name' => 'Answer',
+        'list' => 'Answers',
+    ],    
     
 ];

@@ -41,6 +41,7 @@ Route::prefix('admin')->name('admin::')->group(function() {
     
     Route::get('forms', 'Admin\FormController@index')->name('forms')->middleware('auth:admin');
     Route::get('form/new', 'Admin\FormController@new')->name('form::new')->middleware('auth:admin');
+    Route::get('form/delete/{id}', 'Admin\FormController@delete')->name('form::delete')->middleware('auth:admin');    
     Route::get('form/{id}', 'Admin\FormController@update')->name('form::update')->middleware('auth:admin'); 
     Route::post('form/save', 'Admin\FormController@save')->name('form::save')->middleware('auth:admin');
     Route::get('form/answers/{id}', 'Admin\FormController@answers')->name('form::answers')->middleware('auth:admin');
