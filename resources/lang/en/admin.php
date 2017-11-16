@@ -17,6 +17,8 @@ return [
         ],    
         'list' => 'List',
         'opration' => 'Opration',
+        'report' => 'Report',
+        'reportdata' => 'Report Data',
     ],
     'form' => [
         'column' => [

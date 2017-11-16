@@ -12,6 +12,8 @@
               @foreach ($formColumns as $col)
               <th scope="col">{{ $col }}</th>
               @endforeach
+              <th scope="col">{{ __('admin.com.report') }}</th>
+              <th scope="col">{{ __('admin.com.reportdata') }}</th>              
             </tr>
           </thead>
           <tbody>
@@ -21,6 +23,8 @@
               @foreach ($formColumns as $key=>$col)
               <td>{{ json_decode($answer->answer)->$key }}</td>
               @endforeach
+              <td scope="row">{{ $answer->answer_report }}</td>
+              <td scope="row">{{ $answer->answer_report_data }}</td>              
             </tr>
             @endforeach
             </tbody>
