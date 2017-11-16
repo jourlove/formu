@@ -17,6 +17,7 @@
                   <tr>
                     <th scope="col">#ID</th>
                     <th scope="col">Name</th>
+                    <th scope="col">{{ __('admin.com.opration') }}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -24,6 +25,9 @@
                   <tr>
                     <th scope="row">#{{ $analyzer->id }}</a></th>
                     <td>{{ $analyzer->analyzer }}</td>
+                    <td scope="row">
+                      <a href="{{ route('admin::form::analyzer::delete',['id' => $analyzer->id]) }}" class="btn btn-danger btn-xs">{{ __('admin.com.action.delete') }}</a>
+                    </td>                    
                   </tr>
                   @endforeach
                 </tbody>

@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Log;
 use App\Form;
 use App\FormAnalyzer;
-use App\FormAnalyzer\AnalyserService;
+use App\Analyzers\AnalyserService;
 
 class FormController extends Controller
 {
@@ -102,5 +102,12 @@ class FormController extends Controller
         return redirect()->route('admin::forms');
     }
     
+    //delete form analyzer
+    public function analyzerDelete($id)
+    {
+        $analyzer = FormAnalyzer::find($id);
+        FormAnalyzer::destroy($id);
+        return redirect()->route('admin::form::analyzerlist',['id'=>$analyzer->form_id]);
+    }
 
 }

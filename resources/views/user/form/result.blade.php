@@ -5,25 +5,8 @@
 @section('content')
 <h1>RESULT</h1>
 <div class="alert alert-danger" role="alert">
-  高ストレスチ
+  {{ $result }}
 </div>
-<table class="table">
-    <thead>
-        <tr>
-        <th scope="col">#KEY</th>
-        <th scope="col">VALUE</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach ($form as $key=>$field)
-        <tr>
-        <th scope="row">{{ $key }}</a></th>
-        <td>{{ $field }}</td>
-        </tr>
-        @endforeach
-    </tbody>
-</table>
-
 @endsection
 
 @section('javascript')

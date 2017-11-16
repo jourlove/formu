@@ -1,6 +1,6 @@
 <?php
 
-namespace App\FormAnalyzer\Foo;
+namespace App\Analyzers\RadioSelectSample;
 
 use App\FormAnalyzer\AnalyserBase;
 

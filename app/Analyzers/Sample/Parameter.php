@@ -1,6 +1,6 @@
 <?php
 
-namespace App\FormAnalyzer\Sample;
+namespace App\Analyzers\Sample;
 
 class Parameter
 {

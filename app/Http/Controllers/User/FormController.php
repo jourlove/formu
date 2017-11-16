@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Log;
 use App\Form;
 use App\FormAnswer;
+use App\Analyzers\AnalyserService;
 
 class FormController extends Controller
 {
@@ -33,12 +34,18 @@ class FormController extends Controller
      //form create
      public function create(Request $request) 
      {
+
+        $form = Form::find($request->input('form_id'));
+        $formAnalyzer = $form->analyzers->get(0);
+        $result = AnalyserService::run(1, $formAnalyzer, json_encode($request->input()));
+
         $answer = new FormAnswer;
         $answer->form_id = $request->input('form_id');
         $answer->user_id = 1;
         $answer->answer = json_encode($request->input());
         $answer->save();
-        return view('user.form.result', ['form' => $request->input()]);
+        
+        return view('user.form.result', ['form' => $request->input(),'result'=>$result]);
      }   
 
      //get form answers

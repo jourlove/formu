@@ -1,6 +1,6 @@
 <?php
 
-namespace App\FormAnalyzer;
+namespace App\Analyzers;
 
 class AnalyserBase
 {    
