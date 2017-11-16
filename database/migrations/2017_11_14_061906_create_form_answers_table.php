@@ -18,6 +18,8 @@ class CreateFormAnswersTable extends Migration
             $table->integer('form_id')->unsigned();
             $table->integer('user_id')->unsigned();
             $table->text('answer');
+            $table->text('answer_report');
+            $table->text('answer_report_data');
             $table->timestamps();
         });
     }

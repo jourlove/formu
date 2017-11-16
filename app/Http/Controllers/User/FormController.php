@@ -37,14 +37,16 @@ class FormController extends Controller
 
         $form = Form::find($request->input('form_id'));
         $formAnalyzer = $form->analyzers->get(0);
-        $result = AnalyserService::run(1, $formAnalyzer, json_encode($request->input()));
+        $result = AnalyserService::run($formAnalyzer, json_encode($request->input()));
 
         $answer = new FormAnswer;
         $answer->form_id = $request->input('form_id');
         $answer->user_id = 1;
         $answer->answer = json_encode($request->input());
+        $answer->answer_report = $result;
+        $answer->answer_report_data = AnalyserService::run($formAnalyzer, json_encode($request->input()),'data');
         $answer->save();
-        
+
         return view('user.form.result', ['form' => $request->input(),'result'=>$result]);
      }   
 
