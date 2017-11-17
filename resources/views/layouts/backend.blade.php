@@ -45,10 +45,7 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
-                        @if (Auth::guard('admin')->guest())
-                            <li><a href="{{ url('/login') }}">Login</a></li>
-                            <li><a href="{{ url('/register') }}">Register</a></li>
-                        @else
+                        @if (!Auth::guard('admin')->guest())
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     {{ Auth::guard('admin')->user()->name }} <span class="caret"></span>
@@ -56,13 +53,13 @@
 
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
-                                        <a href="{{ url('/logout') }}"
+                                        <a href="{{ route('admin::logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                             Logout
                                         </a>
 
-                                        <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                                        <form id="logout-form" action="{{ route('admin::logout') }}" method="POST" style="display: none;">
                                             {{ csrf_field() }}
                                         </form>
                                     </li>

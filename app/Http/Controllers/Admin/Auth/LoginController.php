@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use App\Admin;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -27,7 +28,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/admin/home';
+    protected $redirectTo = '/admin';
 
     /**
      * Create a new controller instance.
@@ -47,5 +48,14 @@ class LoginController extends Controller
     protected function guard()
     {
         return Auth::guard('admin');
+    }
+
+    public function logout(Request $request)
+    {
+        $this->guard()->logout();
+
+        //$request->session()->invalidate();
+
+        return redirect()->route('admin::login');
     }
 }
