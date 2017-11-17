@@ -43,8 +43,7 @@ class AnalyzerService
         } 
         $reflector_analyzer = new \ReflectionClass("\App\Analyzers\\".$analyzer."\Analyzer");
         $analyzer_instance = $reflector_analyzer->newInstance();
-        $ret = ['report'=>$analyzer_instance->report($parameter_instance),'report_data'=>$analyzer_instance->data($parameter_instance)];
-        return $ret;
+        return $analyzer_instance->run($parameter_instance);
     }
 
 }

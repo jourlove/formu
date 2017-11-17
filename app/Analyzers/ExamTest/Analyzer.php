@@ -7,14 +7,17 @@ class Analyzer
 
     public $score = 0;
 
-    public function report(Parameter $parameter) {
-        $data = $this->data($parameter);
+    public function report() {
         $namespace = basename(__DIR__);
         view()->addNamespace($namespace, __DIR__);
-        return view($namespace.'::report',['data'=>$data]);
+        return view($namespace.'::report',['data'=>$this->data()]);
     }
 
-    public function data(Parameter $parameter) {
+    public function data() {
+        return $this->score;
+    }
+
+    public function run(Parameter $parameter) {
 
         if ($parameter->p_model == '2') {
             $this->score += 30;
@@ -28,8 +31,7 @@ class Analyzer
             $this->score += 30;
         };
 
-        return $this->score;
-
+        return ['report'=>$this->report(), 'report_data'=>$this->data()];
     }
 
 }
