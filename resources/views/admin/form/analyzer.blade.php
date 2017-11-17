@@ -26,11 +26,7 @@
                     </div>
                 </div>
                 <hr>
-                <h4 class="text-center">Form Fields Relation:</h4>
-                <div id="prop_option_map">
-
-                </div>
-              <p class="help text-center">Form field match analyzer paramter</p>
+                <div id="prop_option_map"></div>
               <br>
               <div class="form-group">
                   <div class="col-md-offset-4 col-md-4">
@@ -64,7 +60,7 @@
     $temp += '  <div class="col-md-6">';
     $temp += '    <select name="KEY" class="form-control inputselect" id="analyzer-KEY">';
     @foreach ($formColumns as $key=>$col) 
-    $temp += '      <option value={{$key}}>{{$col}}</option>';
+    $temp += '      <option value={{$key}}>{{$col}}({{$key}})</option>';
     @endforeach
     $temp += '    </select>';
     $temp += '  </div>';
