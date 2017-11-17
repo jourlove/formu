@@ -9,7 +9,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
-
+    <script src="{{ asset('js/app.js') }}"></script>
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
@@ -28,7 +28,7 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
+                    <a class="navbar-brand" href="{{ route('home') }}">
                         {{ config('app.name', 'Laravel') }}
                     </a>
                 </div>
@@ -73,8 +73,7 @@
 
         @yield('content')
     </div>
-
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+    @yield('javascript')
 </body>
 </html>

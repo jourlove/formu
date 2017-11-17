@@ -1,14 +1,16 @@
-@extends('layouts.forms')
+@extends('layouts.app')
 
 @section('title', 'Form')
 
 @section('content')
-<form action="{{ route('form::save') }}" method="post">
-  {{ csrf_field() }}
-  <div id="fb-result"></div>
-  <input type="hidden" name="form_id" value="{{ $form->id }}">
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+<div class="container">
+    <form action="{{ route('form::save') }}" method="post">
+    {{ csrf_field() }}
+    <div id="fb-result"></div>
+    <input type="hidden" name="form_id" value="{{ $form->id }}">
+    <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
 @endsection
 
 @section('javascript')

@@ -11,17 +11,18 @@
 |
 */
 
-Auth::routes();
-
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('forms', 'User\FormController@index')->name('forms');
-Route::get('form/{id}', 'User\FormController@show')->name('form');
-Route::post('form/save', 'User\FormController@create')->name('form::save');
-Route::get('form/answers/{id}', 'User\FormController@answers')->name('form::answers');
-Route::get('home', 'HomeController@index')->name('home');
+Auth::routes();
+Route::middleware(['auth'])->group(function () {
+    Route::get('forms', 'User\FormController@index')->name('forms');
+    Route::get('form/{id}', 'User\FormController@show')->name('form');
+    Route::post('form/save', 'User\FormController@create')->name('form::save');
+    Route::get('form/answers/{id}', 'User\FormController@answers')->name('form::answers');
+    Route::get('home', 'HomeController@index')->name('home');
+});
 
 //Super admin
 Route::prefix('admin')->name('admin::')->group(function() {
