@@ -17,10 +17,10 @@ Route::get('/', function () {
 
 Auth::routes();
 Route::middleware(['auth'])->group(function () {
-    Route::get('forms', 'User\FormController@index')->name('forms');
-    Route::get('form/{id}', 'User\FormController@show')->name('form');
-    Route::post('form/save', 'User\FormController@create')->name('form::save');
-    Route::get('form/answers/{id}', 'User\FormController@answers')->name('form::answers');
+    Route::get('forms', 'Front\FormController@index')->name('forms');
+    Route::get('form/{id}', 'Front\FormController@show')->name('form');
+    Route::post('form/save', 'Front\FormController@create')->name('form::save');
+    Route::get('form/answers/{id}', 'Front\FormController@answers')->name('form::answers');
     Route::get('home', 'HomeController@index')->name('home');
 });
 
