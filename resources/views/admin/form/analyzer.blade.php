@@ -11,7 +11,7 @@
             <div class="panel-heading">{{ __("admin.analyzer.name") }}</div>
             <div class="panel-body">
             <a title="Back" href="{{route('admin::forms')}}"><button class="btn btn-warning btn-xs"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
-            @if (count($analysers))
+            @if (count($analyzers))
             <form class="form-horizontal" method="post" action="{{ route('admin::form::analyzer:save') }}">
                 {{ csrf_field() }}
                 <input type="hidden" name="form_id" value="{{ $form_id }}">
@@ -19,7 +19,7 @@
                     <label for="route" class="col-md-4 control-label">Analyzer</label>
                     <div class="col-md-6">
                         <select name="analyzer" class="form-control" id="analyzer">
-                            @foreach ($analysers as $key=>$analyzer) 
+                            @foreach ($analyzers as $key=>$analyzer) 
                             <option value="{{$key}}" data="{{ json_encode($analyzer) }}">{{$key}}</option>
                             @endforeach
                         </select>
@@ -27,14 +27,9 @@
                 </div>
                 <hr>
                 <h4 class="text-center">Form Fields Relation:</h4>
-                @foreach ($formColumns as $key=>$col) 
-                <div class="form-group">
-                  <label for="{{$key}}" class="col-md-4 control-label">{{$col}}({{$key}})</label>
-                  <div class="col-md-6">
-                      <select name="{{$key}}" class="form-control inputselect" id="analyzer-{{$key}}"></select>
-                  </div>
+                <div id="prop_option_map">
+
                 </div>
-                @endforeach
               <p class="help text-center">Form field match analyzer paramter</p>
               <br>
               <div class="form-group">
@@ -64,19 +59,28 @@
 
   function setSelect($ops)
   {
-    $('.inputselect').each(function() {
-      $(this).find('option').remove();
-      $ops = $('#analyzer').find(":selected").attr('data');
-      $ops_arr = JSON.parse($ops);
-      $sel = $(this);
-      $.each($ops_arr, function( index, value ) {
-        $sel.append('<option value='+value+'>'+value+'</option>');
-      });      
-    });
+    $temp  = '<div class="form-group">';
+    $temp += '  <label for="KEY" class="col-md-4 control-label">KEY</label>';
+    $temp += '  <div class="col-md-6">';
+    $temp += '    <select name="KEY" class="form-control inputselect" id="analyzer-KEY">';
+    @foreach ($formColumns as $key=>$col) 
+    $temp += '      <option value={{$key}}>{{$col}}</option>';
+    @endforeach
+    $temp += '    </select>';
+    $temp += '  </div>';
+    $temp += '</div>';
+    $('#prop_option_map').find(".form-group").remove();
+    $ops = $('#analyzer').find(":selected").attr('data');
+    $ops_arr = JSON.parse($ops);
+    $.each($ops_arr, function( index, value ) {
+      $('#prop_option_map').append($temp.replace(/KEY/g,value));
+    });      
   }
+
   $('#analyzer').on('change', function() {
     setSelect();
   });
+
   $(function($) {
     setSelect();
   });    

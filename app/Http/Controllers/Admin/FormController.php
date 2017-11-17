@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Log;
 use App\Form;
 use App\FormAnalyzer;
-use App\Analyzers\AnalyserService;
+use App\Analyzers\AnalyzerService;
 
 class FormController extends Controller
 {
@@ -81,22 +81,28 @@ class FormController extends Controller
     {
         $form = Form::find($form_id);
         $formColumns = json_decode($form->columns,true);
-        $analysers = AnalyserService::list();
-        $available_analysers = [];
+        $analyzers = AnalyzerService::list();
+        $available_analyzers = [];
         foreach($form->analyzers as $form_analyzer) {
-            if (array_key_exists($form_analyzer->analyzer,$analysers)) {
-                unset($analysers[$form_analyzer->analyzer]);
+            if (array_key_exists($form_analyzer->analyzer,$analyzers)) {
+                unset($analyzers[$form_analyzer->analyzer]);
             } 
         }
-        return view('admin.form.analyzer',['form_id'=>$form_id,'formColumns'=>$formColumns,'analysers'=>$analysers]);
+        return view('admin.form.analyzer',['form_id'=>$form_id,'formColumns'=>$formColumns,'analyzers'=>$analyzers]);
     }
     
     //save form analyzer
     public function analyzerSave(Request $request)
     {
+        $paramters_map = $request->input();
+        if (isset($paramters_map['_token'])) {
+            unset($paramters_map['_token']);
+        };
+        unset($paramters_map['form_id']);
+        unset($paramters_map['analyzer']);
         $analyzer = new FormAnalyzer();
         $analyzer->form_id = $request->input('form_id');
-        $analyzer->paramters_map = json_encode($request->input());
+        $analyzer->paramters_map = json_encode($paramters_map);
         $analyzer->analyzer = $request->input('analyzer');
         $analyzer->save();
         return redirect()->route('admin::forms');

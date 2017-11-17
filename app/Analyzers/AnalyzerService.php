@@ -4,7 +4,7 @@ namespace App\Analyzers;
 
 use App\FormAnalyzer;
 
-class AnalyserService
+class AnalyzerService
 {    
     //Analyzer list
     public static function list() {
@@ -29,25 +29,22 @@ class AnalyserService
     }
 
     //Handle analyzer
-    public static function run(FormAnalyzer $formAnalyser, $answer_json, $type='report') {
-        $analyzer = $formAnalyser->analyzer;
+    public static function run(FormAnalyzer $formAnalyzer, $answer_json) {
+        $analyzer = $formAnalyzer->analyzer;
         $reflector_parameter = new \ReflectionClass("\App\Analyzers\\".$analyzer."\Parameter");
         $parameter_instance = $reflector_parameter->newInstance();
         $properties = $reflector_parameter->getProperties();
         $answer = json_decode($answer_json);
-        $paramters_map = json_decode($formAnalyser->paramters_map,true);
-        $maps = [];
-        foreach($paramters_map as $answer_option=>$property) {
-            $maps[$property] = $answer_option;
-        }
+        $paramters_map = json_decode($formAnalyzer->paramters_map,true);
         foreach($properties as $prop) {
             $property = $prop->name;
-            $answer_option = $maps[$property];
+            $answer_option = $paramters_map[$property];
             $parameter_instance->$property = $answer->$answer_option;
         } 
         $reflector_analyzer = new \ReflectionClass("\App\Analyzers\\".$analyzer."\Analyzer");
         $analyzer_instance = $reflector_analyzer->newInstance();
-        return ($type=='report' ? $analyzer_instance->report($parameter_instance) : $analyzer_instance->data($parameter_instance));
+        $ret = ['report'=>$analyzer_instance->report($parameter_instance),'report_data'=>$analyzer_instance->data($parameter_instance)];
+        return $ret;
     }
 
 }

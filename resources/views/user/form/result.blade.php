@@ -5,8 +5,9 @@
 @section('content')
 <h1>RESULT</h1>
 <div class="alert alert-danger" role="alert">
-  {{ $result }}
+  {{  $result }}
 </div>
+{!! $result !!}
 @endsection
 
 @section('javascript')

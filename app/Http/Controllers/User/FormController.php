@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Log;
 use App\Form;
 use App\FormAnswer;
-use App\Analyzers\AnalyserService;
+use App\Analyzers\AnalyzerService;
 
 class FormController extends Controller
 {
@@ -35,19 +35,28 @@ class FormController extends Controller
      public function create(Request $request) 
      {
 
+        $answer = $request->input();
+        if (isset($answer['_token'])) {
+            unset($answer['_token']);
+        };
+        unset($answer['form_id']);
+        $answer_json = json_encode($answer);
+
         $form = Form::find($request->input('form_id'));
         $formAnalyzer = $form->analyzers->get(0);
-        $result = AnalyserService::run($formAnalyzer, json_encode($request->input()));
+
+        $report = AnalyzerService::run($formAnalyzer, $answer_json);
 
         $answer = new FormAnswer;
         $answer->form_id = $request->input('form_id');
+        $answer->form_analyzer_id = $formAnalyzer->id;
         $answer->user_id = 1;
-        $answer->answer = json_encode($request->input());
-        $answer->answer_report = $result;
-        $answer->answer_report_data = AnalyserService::run($formAnalyzer, json_encode($request->input()),'data');
+        $answer->answer = $answer_json;
+        $answer->answer_report = $report['report'];
+        $answer->answer_report_data = $report['report_data'];
         $answer->save();
 
-        return view('user.form.result', ['form' => $request->input(),'result'=>$result]);
+        return view('user.form.result', ['form' => $request->input(),'result'=>$report['report']]);
      }   
 
      //get form answers

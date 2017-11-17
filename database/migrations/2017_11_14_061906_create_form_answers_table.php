@@ -16,6 +16,7 @@ class CreateFormAnswersTable extends Migration
         Schema::create('form_answers', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('form_id')->unsigned();
+            $table->integer('form_analyzer_id')->unsigned();
             $table->integer('user_id')->unsigned();
             $table->text('answer');
             $table->text('answer_report');
