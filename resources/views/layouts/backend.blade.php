@@ -21,8 +21,8 @@
             ]); ?>
         </script>
     </head>
-    <body>
-        <nav class="navbar navbar-default navbar-static-top">
+    <body>    
+        <nav class="navbar navbar-inverse">
             <div class="container">
                 <div class="navbar-header">
 
@@ -39,9 +39,20 @@
                         {{ config('app.name', 'Laravel') }} Dashboard
                     </a>
                 </div>
-
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
-
+                    <ul class="nav navbar-nav">
+                        <li><a href="{{ route('admin::home') }}">Home</a></li>
+                        <li><a href="{{ route('admin::forms') }}">Forms</a></li>
+                        <li><a href="{{ url('/admin/generator') }}">Tools</a></li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" role="button" aria-expanded="false" aria-haspopup="true" href="#" data-toggle="dropdown">User Manager<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{ url('/admin/users') }}">Users</a></li>
+                                <li><a href="{{ url('/admin/roles') }}">Roles</a></li>
+                                <li><a href="{{ url('/admin/permissions') }}">Permissions</a></li>
+                            </ul>
+                        </li>
+                    </ul>
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
