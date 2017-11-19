@@ -19,6 +19,8 @@ return [
         'opration' => 'Opration',
         'report' => 'Report',
         'reportdata' => 'Report Data',
+        'login_name' => 'Code',
+        'login_password' => 'Password',
     ],
     'form' => [
         'column' => [

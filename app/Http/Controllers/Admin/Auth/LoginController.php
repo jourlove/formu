@@ -49,7 +49,12 @@ class LoginController extends Controller
     {
         return Auth::guard('admin');
     }
-
+    
+    public function username()
+    {
+        return 'code';
+    }
+    
     public function logout(Request $request)
     {
         $this->guard()->logout();
