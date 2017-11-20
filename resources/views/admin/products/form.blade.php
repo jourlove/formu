@@ -48,14 +48,13 @@
         {!! $errors->first('material', '<p class="help-block">:message</p>') !!}
     </div>
 </div>
-@if($product->id)
 <div class="form-group {{ $errors->has('images') ? 'has-error' : ''}}">
     <label for="images" class="col-md-4 control-label">Images</label>
     <div class="col-md-6">
         @include('partials.uploader', [
             'title' => 'Upload only photos ',
             'params' => [
-                'attachable_id' => $product->id,
+                'attachable_id' => ($product->id ? $product->id : 0),
                 'attachable_type' => 'App\Product',                
             ],
             'acceptedFiles' => '.jpg,.png',
@@ -64,7 +63,6 @@
         {!! $errors->first('images', '<p class="help-block">:message</p>') !!}
     </div>
 </div>
-@endif
 <div class="form-group">
     <div class="col-md-offset-4 col-md-4">
         {!! Form::submit(isset($submitButtonText) ? $submitButtonText : 'Create', ['class' => 'btn btn-primary']) !!}

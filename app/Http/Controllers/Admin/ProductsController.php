@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Product;
 use Illuminate\Http\Request;
 use App\Category;
+use App\Attachment;
 
 class ProductsController extends Controller
 {
@@ -85,7 +86,14 @@ class ProductsController extends Controller
 		]);
         $requestData = $request->all();
         
-        Product::create($requestData);
+        $product = Product::create($requestData);
+
+        $attaches = Attachment::where('attachable_id',0)->get();
+
+        foreach($attaches as $attache) {
+            $attache->attachable_id = $product->id;
+            $attache->save();
+        }
 
         return redirect('admin/products')->with('flash_message', 'Product added!');
     }
