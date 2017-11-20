@@ -31,6 +31,18 @@ class CategoriesController extends Controller
         return view('admin.categories.index', compact('categories'));
     }
 
+    public function getOptions() {
+        $categories = Category::all();
+        $categories_option = [''=>'-----'];
+        foreach($categories as $category) {
+            $categories_option[$category->id] = $category->name;
+        }
+        $options = [
+            'categories' => $categories_option,
+        ];
+        return $options;
+    }
+    
     /**
      * Show the form for creating a new resource.
      *
@@ -38,7 +50,7 @@ class CategoriesController extends Controller
      */
     public function create()
     {
-        return view('admin.categories.create');
+        return view('admin.categories.create', ['options'=>$this->getOptions()]);
     }
 
     /**
@@ -51,10 +63,15 @@ class CategoriesController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-			'parent_id' => 'required',
 			'name' => 'required'
 		]);
         $requestData = $request->all();
+        if (trim($requestData['parent_id'])) {
+            $pcategory = Category::find(trim($requestData['parent_id']));
+            $requestData['layer'] = $pcategory->layer+1;
+        } else {
+            $requestData['layer'] = 0;
+        }
         
         Category::create($requestData);
 
@@ -85,8 +102,8 @@ class CategoriesController extends Controller
     public function edit($id)
     {
         $category = Category::findOrFail($id);
-
-        return view('admin.categories.edit', compact('category'));
+        $options = $this->getOptions();
+        return view('admin.categories.edit', compact('category','options'));
     }
 
     /**
@@ -100,10 +117,15 @@ class CategoriesController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-			'parent_id' => 'required',
 			'name' => 'required'
 		]);
         $requestData = $request->all();
+        if (trim($requestData['parent_id'])) {
+            $pcategory = Category::find(trim($requestData['parent_id']));
+            $requestData['layer'] = $pcategory->layer+1;
+        } else {
+            $requestData['layer'] = 0;
+        }
         
         $category = Category::findOrFail($id);
         $category->update($requestData);

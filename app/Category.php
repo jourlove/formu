@@ -25,7 +25,7 @@ class Category extends Model
      *
      * @var array
      */
-    protected $fillable = ['parent_id', 'name'];
+    protected $fillable = ['parent_id', 'name', 'layer'];
 
     
 }
