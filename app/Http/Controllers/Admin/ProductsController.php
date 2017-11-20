@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 
 use App\Product;
 use Illuminate\Http\Request;
+use App\Category;
 
 class ProductsController extends Controller
 {
@@ -37,6 +38,28 @@ class ProductsController extends Controller
         return view('admin.products.index', compact('products'));
     }
 
+    public function getOptions() {
+        $categories = Category::all();
+        $categories_option = [];
+        foreach($categories as $category) {
+            $categories_option[$category->id] = $category->name;
+        }
+        $colors_option = ['0'=>'红色','1'=>'白色','2'=>'黑色','3'=>'蓝色'];
+        $size_option = ['0'=>'xs','1'=>'s','2'=>'m','3'=>'l'];
+        $age_option = ['0'=>'0-6','1'=>'18~','2'=>'40~','3'=>'60~'];
+        $gender_option = ['0'=>'男','1'=>'女','2'=>'都行'];
+
+        $options = [
+            'categories' => $categories_option,
+            'colors' => $colors_option,
+            'size' => $size_option,
+            'age' => $age_option,
+            'gender' => $gender_option,
+
+        ];
+        return $options;
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -44,7 +67,7 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        return view('admin.products.create');
+        return view('admin.products.create',['options'=>$this->getOptions()]);
     }
 
     /**
@@ -91,8 +114,8 @@ class ProductsController extends Controller
     public function edit($id)
     {
         $product = Product::findOrFail($id);
-
-        return view('admin.products.edit', compact('product'));
+        $options = $this->getOptions();
+        return view('admin.products.edit', compact('product','options'));
     }
 
     /**
