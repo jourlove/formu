@@ -49,6 +49,13 @@
                                 <li><a href="{{ url('/admin/permissions') }}">Permissions</a></li>
                             </ul>
                         </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" role="button" aria-expanded="false" aria-haspopup="true" href="#" data-toggle="dropdown">{{ __('admin.com.menu.products')}}<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{ url('/admin/products') }}">Products</a></li>
+                                <li><a href="{{ url('/admin/categories') }}">Categories</a></li>
+                            </ul>
+                        </li>
                     </ul>
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">

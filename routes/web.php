@@ -51,4 +51,7 @@ Route::prefix('admin')->name('admin::')->group(function() {
     Route::get('form/analyzer/{id}', 'Admin\FormController@analyzer')->name('form::analyzer')->middleware('auth:admin');
     Route::post('form/analyzer/save', 'Admin\FormController@analyzerSave')->name('form::analyzer:save')->middleware('auth:admin');
     Route::get('form/analyzer/delete/{id}', 'Admin\FormController@analyzerDelete')->name('form::analyzer::delete')->middleware('auth:admin');
+
+    Route::resource('categories', 'Admin\\CategoriesController')->middleware('auth:admin');
+    Route::resource('products', 'Admin\\ProductsController')->middleware('auth:admin');
 });

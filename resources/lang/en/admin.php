@@ -19,6 +19,8 @@ return [
             'forms' => 'Forms',
             'tools' => 'Tools',
             'user_manager' => 'User manager',
+            'products' => 'Products',
+
         ],    
         'list' => 'List',
         'opration' => 'Opration',
