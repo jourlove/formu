@@ -67,7 +67,7 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        return view('admin.products.create',['options'=>$this->getOptions()]);
+        return view('admin.products.create',['options'=>$this->getOptions(),'product'=>new Product()]);
     }
 
     /**

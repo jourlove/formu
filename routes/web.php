@@ -55,3 +55,4 @@ Route::prefix('admin')->name('admin::')->group(function() {
     Route::resource('categories', 'Admin\\CategoriesController')->middleware('auth:admin');
     Route::resource('products', 'Admin\\ProductsController')->middleware('auth:admin');
 });
+Route::apiResource('attachments', 'AttachmentController');

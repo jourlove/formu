@@ -1,5 +1,9 @@
 @extends('layouts.backend')
 
+@section('css')
+    <link href="{{ asset('css/dropzone.min.css') }}" rel="stylesheet">
+@endsection
+
 @section('content')
     <div class="container">
         <div class="row">
@@ -35,4 +39,12 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('scripts')
+<script src="{{ asset('js/dropzone.min.js') }}"></script>
+<script>
+    $(function($) {  
+    }); 
+</script>
 @endsection
