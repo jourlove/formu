@@ -21,6 +21,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('form/{id}', 'Front\FormController@show')->name('form');
     Route::post('form/save', 'Front\FormController@create')->name('form::save');
     Route::get('form/answers/{id}', 'Front\FormController@answers')->name('form::answers');
+
+    Route::get('products', 'Front\ProductController@index')->name('products');
+    
     Route::get('home', 'HomeController@index')->name('home');
 });
 

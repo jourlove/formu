@@ -5,6 +5,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <a href="{{ route('forms') }}">Forms</a>
+            <a href="{{ route('products') }}">Products</a>
         </div>
     </div>
 </div>

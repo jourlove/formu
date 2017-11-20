@@ -21,14 +21,14 @@ class FormController extends Controller
     public function index() 
     {
         $forms = Form::all();
-        return view('user.form.index',['formlist'=>$forms]);
+        return view('front.form.index',['formlist'=>$forms]);
     }
     
     //show form by id
     public function show($id) 
     {
         $form = Form::find($id);
-        return view('user.form.show', ['form' => $form]);
+        return view('front.form.show', ['form' => $form]);
     }
 
      //form create
@@ -56,7 +56,7 @@ class FormController extends Controller
         $answer->answer_report_data = $report['report_data'];
         $answer->save();
 
-        return view('user.form.result', ['form' => $request->input(),'result'=>$report['report']]);
+        return view('front.form.result', ['form' => $request->input(),'result'=>$report['report']]);
      }   
 
      //get form answers
@@ -64,7 +64,7 @@ class FormController extends Controller
     {
         $form = Form::find($form_id);
         $formColumns = json_decode($form->columns,true);
-        return view('user.form.answers',['form'=>$form,'formColumns'=>$formColumns]);
+        return view('front.form.answers',['form'=>$form,'formColumns'=>$formColumns]);
     }
      
 }
