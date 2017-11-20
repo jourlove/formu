@@ -14,6 +14,11 @@ return [
             'delete' => 'Delete',
             'update' => 'Update',
             'save' => 'Save',
+        ],
+        'menu' => [
+            'forms' => 'Forms',
+            'tools' => 'Tools',
+            'user_manager' => 'User manager',
         ],    
         'list' => 'List',
         'opration' => 'Opration',
@@ -21,6 +26,7 @@ return [
         'reportdata' => 'Report Data',
         'login_name' => 'Code',
         'login_password' => 'Password',
+        'dashboard'=>'Dashboard',
     ],
     'form' => [
         'column' => [

@@ -35,17 +35,14 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ route('admin::home') }}">
-                        {{ config('app.name', 'Laravel') }} Dashboard
-                    </a>
+                    <a class="navbar-brand" href="{{ route('admin::home') }}">{{ __('admin.com.dashboard') }}</a>
                 </div>
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <li><a href="{{ route('admin::home') }}">Home</a></li>
-                        <li><a href="{{ route('admin::forms') }}">Forms</a></li>
-                        <li><a href="{{ url('/admin/generator') }}">Tools</a></li>
+                        <li><a href="{{ route('admin::forms') }}">{{ __('admin.com.menu.forms')}}</a></li>
+                        <li><a href="{{ url('/admin/generator') }}">{{ __('admin.com.menu.tools')}}</a></li>
                         <li class="dropdown">
-                            <a class="dropdown-toggle" role="button" aria-expanded="false" aria-haspopup="true" href="#" data-toggle="dropdown">User Manager<span class="caret"></span></a>
+                            <a class="dropdown-toggle" role="button" aria-expanded="false" aria-haspopup="true" href="#" data-toggle="dropdown">{{ __('admin.com.menu.user_manager')}}<span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="{{ url('/admin/users') }}">Users</a></li>
                                 <li><a href="{{ url('/admin/roles') }}">Roles</a></li>
