@@ -31,11 +31,27 @@
                                     <tr>
                                         <th>ID</th><td>{{ $deliver->id }}</td>
                                     </tr>
-                                    <tr><th> Code </th><td> {{ $deliver->code }} </td></tr><tr><th> Weight </th><td> {{ $deliver->weight }} </td></tr><tr><th> Price </th><td> {{ $deliver->price }} </td></tr>
+                                    <tr><th> Code </th><td> {{ $deliver->code }} </td></tr>
+                                    <tr><th> Weight </th><td> {{ $deliver->weight }} </td></tr>
+                                    <tr><th> Price </th><td> {{ $deliver->price }} </td></tr>
+                                    <tr><th> Status </th><td> {{ $deliver->status }} </td></tr>
                                 </tbody>
                             </table>
                         </div>
-
+                        <div class="table-responsive">
+                            <table class="table table-borderless">
+                                <thead>
+                                    <tr>
+                                        <th>JAN</th><th>Name</th><th>Price</th>
+                                    </tr>
+                                </thead>                            
+                                <tbody>
+                                    @foreach($deliver->products as $product)
+                                    <tr><td>{{$product->jan}}</td><td>{{$product->name}}</td><td>{{$product->pivot->price}}</td></tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -16,12 +16,6 @@
         {!! Form::number('price', null, ['class' => 'form-control', 'required' => 'required']) !!}
         {!! $errors->first('price', '<p class="help-block">:message</p>') !!}
     </div>
-</div><div class="form-group {{ $errors->has('status') ? 'has-error' : ''}}">
-    {!! Form::label('status', 'Status', ['class' => 'col-md-4 control-label']) !!}
-    <div class="col-md-6">
-        {!! Form::number('status', null, ['class' => 'form-control', 'required' => 'required']) !!}
-        {!! $errors->first('status', '<p class="help-block">:message</p>') !!}
-    </div>
 </div>
 
 <hr>
@@ -33,6 +27,8 @@
         <input class="form-control jan" name="jans[]" type="text" placeholder="JAN" required="true" onblur="setName(this)" value="{{$product->jan}}">
         <label>NAME：</label>
         <input class="form-control name" name="names[]" type="text" placeholder="Name" required="true" value="{{$product->name}}">
+        <label>Price:</label>
+        <input class="form-control price" name="prices[]" type="number" placeholder="Price" required="true" value="{{$product->pivot->price}}">
         <input class="form-control pid" name="pid[]" type="hidden" placeholder="Name" required="true" value="{{$product->id}}">        
         <button class="btn btn-danger btn-remove inline" type="button">
             <span class="glyphicon glyphicon-minus"></span>
@@ -47,10 +43,12 @@
     @endforeach
 @else
     <div class="entry col-md-10 col-md-offset-2 form-inline">
-        <label>JAN：</label>
+        <label>JAN:</label>
         <input class="form-control jan" name="jans[]" type="text" placeholder="JAN" required="true" onblur="setName(this)">
-        <label>NAME：</label>
+        <label>Name:</label>
         <input class="form-control name" name="names[]" type="text" placeholder="Name" required="true">
+        <label>Price:</label>
+        <input class="form-control price" name="prices[]" type="number" placeholder="Price" required="true">
         <input class="form-control pid" name="pid[]" type="hidden" placeholder="Name" required="true">
         <button class="btn btn-success btn-add inline" type="button">
             <span class="glyphicon glyphicon-plus"></span>

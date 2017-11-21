@@ -29,7 +29,7 @@ class Deliver extends Model
 
     public function products()
     {
-        return $this->belongsToMany('App\Product','delivers_products','deliver_id');
+        return $this->belongsToMany('App\Product','delivers_products','deliver_id')->withPivot('price');;
     }
     
 }

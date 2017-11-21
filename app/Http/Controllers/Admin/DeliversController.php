@@ -57,10 +57,9 @@ class DeliversController extends Controller
 			'code' => 'required',
 			'weight' => 'required',
 			'price' => 'required',
-			'status' => 'required'
 		]);
         $requestData = $request->all();
-        
+        $requestData['status'] = 0;
         $deliver = Deliver::create($requestData);
 
         foreach($requestData['jans'] as $key=>$jan) {
@@ -73,9 +72,8 @@ class DeliversController extends Controller
                 $product->save();
                 $requestData['pid'][$key] = $product->id;
             }
+            $deliver->products()->attach([$requestData['pid'][$key]=>['price'=>$requestData['prices'][$key]]]);
         }
-
-        $deliver->products()->attach($requestData['pid']);
 
         return redirect('admin/delivers')->with('flash_message', 'Deliver added!');
     }
@@ -140,9 +138,9 @@ class DeliversController extends Controller
                 $product->save();
                 $requestData['pid'][$key] = $product->id;
             }
+            $deliver->products()->attach([$requestData['pid'][$key]=>['price'=>$requestData['prices'][$key]]]);            
         }
-        
-        $deliver->products()->attach($requestData['pid']);
+
         return redirect('admin/delivers')->with('flash_message', 'Deliver updated!');
     }
 
