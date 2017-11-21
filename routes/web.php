@@ -11,10 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
 Route::middleware(['auth'])->group(function () {
     Route::get('forms', 'Front\FormController@index')->name('forms');
@@ -25,7 +21,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('products', 'Front\ProductController@index')->name('products');
     Route::get('product/{id}', 'Front\ProductController@show')->name('product::show');
     
-    Route::get('home', 'HomeController@index')->name('home');
+    Route::get('home', 'Front\ProductController@index')->name('home');
+    Route::get('/', 'Front\ProductController@index');
 });
 
 //Super admin

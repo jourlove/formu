@@ -60,10 +60,8 @@
 
     <div class="row">
         <div class="col-sm-12">
-            <h3>Attachments</h3>
-                        <a href="http://www.jkshopdemo.jiri-octobercms.com/storage/app/uploads/public/589/8ed/a47/5898eda47058c453600028.png" target="_blank">logo.png</a><br>
-                    </div>
-
+            <h3>Comments</h3>
+        </div>
         <div class="clearfix"></div>    
     </div>
 

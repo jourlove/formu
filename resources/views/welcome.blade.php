@@ -79,11 +79,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    {{ config('app.name', 'ARGO.HEALTH') }}
-                </div>
-
-                <div class="links">
-                    <a href="{{ route('forms') }}">Forms</a>
+                    小霞商铺
                 </div>
             </div>
         </div>
