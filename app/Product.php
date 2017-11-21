@@ -25,7 +25,7 @@ class Product extends Model
      *
      * @var array
      */
-    protected $fillable = ['category_id', 'name', 'description', 'color', 'size', 'suitable_age', 'suitable_gender', 'material'];
+    protected $fillable = ['category_id', 'jan', 'name', 'description', 'color', 'size', 'suitable_age', 'suitable_gender', 'material'];
 
     public function attachments()
     {

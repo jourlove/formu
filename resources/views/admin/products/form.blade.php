@@ -4,13 +4,22 @@
         {!! Form::select('category_id', $options['categories'], null, ['class' => 'form-control', 'required' => 'required']); !!}
         {!! $errors->first('category_id', '<p class="help-block">:message</p>') !!}
     </div>
-</div><div class="form-group {{ $errors->has('name') ? 'has-error' : ''}}">
+</div>
+<div class="form-group {{ $errors->has('jan') ? 'has-error' : ''}}">
+    {!! Form::label('jan', 'JAN', ['class' => 'col-md-4 control-label']) !!}
+    <div class="col-md-6">
+        {!! Form::text('jan', null, ['class' => 'form-control', 'required' => 'required']) !!}
+        {!! $errors->first('jan', '<p class="help-block">:message</p>') !!}
+    </div>
+</div>
+<div class="form-group {{ $errors->has('name') ? 'has-error' : ''}}">
     {!! Form::label('name', 'Name', ['class' => 'col-md-4 control-label']) !!}
     <div class="col-md-6">
         {!! Form::text('name', null, ['class' => 'form-control', 'required' => 'required']) !!}
         {!! $errors->first('name', '<p class="help-block">:message</p>') !!}
     </div>
-</div><div class="form-group {{ $errors->has('description') ? 'has-error' : ''}}">
+</div>
+<div class="form-group {{ $errors->has('description') ? 'has-error' : ''}}">
     {!! Form::label('description', 'Description', ['class' => 'col-md-4 control-label']) !!}
     <div class="col-md-6">
         {!! Form::textarea('description', null, ['class' => 'form-control']) !!}
@@ -19,25 +28,25 @@
 </div><div class="form-group {{ $errors->has('color') ? 'has-error' : ''}}">
     {!! Form::label('color', 'Color', ['class' => 'col-md-4 control-label']) !!}
     <div class="col-md-6">
-        {!! Form::select('color', $options['colors'], null, ['class' => 'form-control', 'required' => 'required']); !!}
+        {!! Form::select('color', $options['colors'], null, ['class' => 'form-control']); !!}
         {!! $errors->first('color', '<p class="help-block">:message</p>') !!}
     </div>
 </div><div class="form-group {{ $errors->has('size') ? 'has-error' : ''}}">
     {!! Form::label('size', 'Size', ['class' => 'col-md-4 control-label']) !!}
     <div class="col-md-6">
-        {!! Form::select('size', $options['size'], null, ['class' => 'form-control', 'required' => 'required']); !!}
+        {!! Form::select('size', $options['size'], null, ['class' => 'form-control']); !!}
         {!! $errors->first('size', '<p class="help-block">:message</p>') !!}
     </div>
 </div><div class="form-group {{ $errors->has('suitable_age') ? 'has-error' : ''}}">
     {!! Form::label('suitable_age', 'Suitable Age', ['class' => 'col-md-4 control-label']) !!}
     <div class="col-md-6">
-        {!! Form::select('suitable_age', $options['age'], null, ['class' => 'form-control', 'required' => 'required']); !!}
+        {!! Form::select('suitable_age', $options['age'], null, ['class' => 'form-control']); !!}
         {!! $errors->first('suitable_age', '<p class="help-block">:message</p>') !!}
     </div>
 </div><div class="form-group {{ $errors->has('suitable_gender') ? 'has-error' : ''}}">
     {!! Form::label('suitable_gender', 'Suitable Gender', ['class' => 'col-md-4 control-label']) !!}
     <div class="col-md-6">
-        {!! Form::select('suitable_gender', $options['gender'], null, ['class' => 'form-control', 'required' => 'required']); !!}
+        {!! Form::select('suitable_gender', $options['gender'], null, ['class' => 'form-control']); !!}
         {!! $errors->first('suitable_gender', '<p class="help-block">:message</p>') !!}
     </div>
 </div>

@@ -15,13 +15,14 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('category_id');
-            $table->string('name');
+            $table->string('jan',20);
+            $table->string('name',50);
             $table->text('description')->nullable();
             $table->tinyInteger('color')->nullable();
             $table->tinyInteger('size')->nullable();
             $table->tinyInteger('suitable_age')->nullable();
             $table->tinyInteger('suitable_gender')->nullable();
-            $table->string('material')->nullable();
+            $table->string('material',100)->nullable();
             $table->timestamps();
         });
     }

@@ -81,7 +81,8 @@ class ProductsController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-			'category_id' => 'required',
+            'category_id' => 'required',
+            'jan' => 'required',
 			'name' => 'required'
 		]);
         $requestData = $request->all();
@@ -137,7 +138,8 @@ class ProductsController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-			'category_id' => 'required',
+            'category_id' => 'required',
+            'jan' => 'required',
 			'name' => 'required'
 		]);
         $requestData = $request->all();
