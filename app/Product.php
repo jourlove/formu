@@ -27,6 +27,11 @@ class Product extends Model
      */
     protected $fillable = ['category_id', 'jan', 'name', 'description', 'color', 'size', 'suitable_age', 'suitable_gender', 'material'];
 
+    public function category()
+    {
+        return $this->belongsTo('App\Category', 'category_id');
+    }
+
     public function attachments()
     {
         return $this->morphMany(Attachment::class, 'attachable');

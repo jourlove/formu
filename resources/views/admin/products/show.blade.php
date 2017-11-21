@@ -31,7 +31,18 @@
                                     <tr>
                                         <th>ID</th><td>{{ $product->id }}</td>
                                     </tr>
-                                    <tr><th> Category Id </th><td> {{ $product->category_id }} </td></tr><tr><th> Name </th><td> {{ $product->name }} </td></tr><tr><th> Description </th><td> {{ $product->description }} </td></tr>
+                                    <tr><th> Category</th><td> {{ $product->category->fullName }} </td></tr>
+                                    <tr><th> JAN </th><td> {{ $product->jan }} </td></tr>
+                                    <tr><th> Name </th><td> {{ $product->name }} </td></tr>
+                                    <tr><th> Description </th><td> {{ $product->description }} </td></tr>
+                                    <tr>
+                                        <th> Images </th>
+                                        <td>
+                                            @foreach($product->attachments as $image)
+                                            <img src="{{$image->url}}">
+                                            @endforeach                                           
+                                        </td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>

@@ -12,7 +12,7 @@ class Category extends Model
      * @var string
      */
     protected $table = 'categories';
-
+    protected $appends = ['fullName'];
     /**
     * The database primary key value.
     *
@@ -27,5 +27,15 @@ class Category extends Model
      */
     protected $fillable = ['parent_id', 'name', 'layer'];
 
-    
+    public function getFullNameAttribute()
+    {
+        $thisCate = $this;
+        $fullName = $this->name;
+        while($thisCate->parent_id) {
+            $thisCate = Category::find($thisCate->parent_id);
+            $fullName = $thisCate->name.":".$fullName;
+            
+        }
+        return $fullName;
+    }
 }

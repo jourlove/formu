@@ -43,7 +43,7 @@ class ProductsController extends Controller
         $categories = Category::all();
         $categories_option = [''=>'-----'];
         foreach($categories as $category) {
-            $categories_option[$category->id] = ($category->layer >0 ? '|' : '').str_repeat('--',$category->layer).$category->name;
+            $categories_option[$category->id] = $category->fullName;
         }
         $colors_option = [''=>'-----','0'=>'红色','1'=>'白色','2'=>'黑色','3'=>'蓝色'];
         $size_option = [''=>'-----','0'=>'xs','1'=>'s','2'=>'m','3'=>'l'];
