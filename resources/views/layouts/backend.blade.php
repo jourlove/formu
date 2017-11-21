@@ -40,6 +40,7 @@
                 </div>
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <ul class="nav navbar-nav">
+                        @if(Auth::guard('admin')->user()->isSupperAdmin())
                         <li><a href="{{ route('admin::forms') }}">{{ __('admin.com.menu.forms')}}</a></li>
                         <li><a href="{{ url('/admin/generator') }}">{{ __('admin.com.menu.tools')}}</a></li>
                         <li class="dropdown">
@@ -57,6 +58,8 @@
                                 <li><a href="{{ url('/admin/categories') }}">Categories</a></li>
                             </ul>
                         </li>
+                        @endif
+                        <li><a href="{{ route('admin::forms') }}">{{ __('admin.com.menu.delivers')}}</a></li>
                     </ul>
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">

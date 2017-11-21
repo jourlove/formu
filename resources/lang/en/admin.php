@@ -20,6 +20,7 @@ return [
             'tools' => 'Tools',
             'user_manager' => 'User manager',
             'products' => 'Products',
+            'delivers' => 'Delivers',
 
         ],    
         'list' => 'List',

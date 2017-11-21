@@ -8,4 +8,9 @@ class Admin extends Authenticatable
 {
     //
     protected $table = "admins";
+
+    public function isSupperAdmin()
+    {
+        return $this->authorization === 'superadmin';
+    }
 }
