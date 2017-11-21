@@ -23,6 +23,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('form/answers/{id}', 'Front\FormController@answers')->name('form::answers');
 
     Route::get('products', 'Front\ProductController@index')->name('products');
+    Route::get('product/{id}', 'Front\ProductController@show')->name('product::show');
     
     Route::get('home', 'HomeController@index')->name('home');
 });
