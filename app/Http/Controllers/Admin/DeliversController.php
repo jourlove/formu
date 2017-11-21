@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 
 use App\Deliver;
 use Illuminate\Http\Request;
+use App\Product;
 
 class DeliversController extends Controller
 {
@@ -60,7 +61,21 @@ class DeliversController extends Controller
 		]);
         $requestData = $request->all();
         
-        Deliver::create($requestData);
+        $deliver = Deliver::create($requestData);
+
+        foreach($requestData['jans'] as $key=>$jan) {
+            if ($requestData['pid'][$key]=="") {
+                $product = new Product();
+                $product->category_id = 1;
+                $product->name = $requestData['names'][$key];
+                $product->description = $requestData['names'][$key];
+                $product->jan = $jan;
+                $product->save();
+                $requestData['pid'][$key] = $product->id;
+            }
+        }
+
+        $deliver->products()->attach($requestData['pid']);
 
         return redirect('admin/delivers')->with('flash_message', 'Deliver added!');
     }
@@ -113,7 +128,21 @@ class DeliversController extends Controller
         
         $deliver = Deliver::findOrFail($id);
         $deliver->update($requestData);
-
+        $deliver->products()->detach();
+        
+        foreach($requestData['jans'] as $key=>$jan) {
+            if ($requestData['pid'][$key]=="") {
+                $product = new Product();
+                $product->category_id = 1;                
+                $product->name = $requestData['names'][$key];
+                $product->description = $requestData['names'][$key];
+                $product->jan = $jan;
+                $product->save();
+                $requestData['pid'][$key] = $product->id;
+            }
+        }
+        
+        $deliver->products()->attach($requestData['pid']);
         return redirect('admin/delivers')->with('flash_message', 'Deliver updated!');
     }
 

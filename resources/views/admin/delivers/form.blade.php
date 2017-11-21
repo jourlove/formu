@@ -26,23 +26,40 @@
 
 <hr>
 <div class="form-group table-fields">
+@if(isset($deliver))
+    @foreach($deliver->products as $key=>$product)
     <div class="entry col-md-10 col-md-offset-2 form-inline">
         <label>JAN：</label>
-        <input class="form-control" name="jans[]" type="text" placeholder="JAN" required="true">
+        <input class="form-control jan" name="jans[]" type="text" placeholder="JAN" required="true" onblur="setName(this)" value="{{$product->jan}}">
         <label>NAME：</label>
-        <input class="form-control" name="names[]" type="text" placeholder="Name" required="true">
-        <label>AMOUNT：</label>
-        <select name="amount[]" class="form-control">
-            <option value="1">1</option>
-            <option value="2">2</option>
-        </select>
-
+        <input class="form-control name" name="names[]" type="text" placeholder="Name" required="true" value="{{$product->name}}">
+        <input class="form-control pid" name="pid[]" type="hidden" placeholder="Name" required="true" value="{{$product->id}}">        
+        <button class="btn btn-danger btn-remove inline" type="button">
+            <span class="glyphicon glyphicon-minus"></span>
+        </button>
+        @if($key==0)
+        <button class="btn btn-success btn-add inline" type="button">
+            <span class="glyphicon glyphicon-plus"></span>
+        </button>
+        @endif
+        <br>
+    </div>    
+    @endforeach
+@else
+    <div class="entry col-md-10 col-md-offset-2 form-inline">
+        <label>JAN：</label>
+        <input class="form-control jan" name="jans[]" type="text" placeholder="JAN" required="true" onblur="setName(this)">
+        <label>NAME：</label>
+        <input class="form-control name" name="names[]" type="text" placeholder="Name" required="true">
+        <input class="form-control pid" name="pid[]" type="hidden" placeholder="Name" required="true">
         <button class="btn btn-success btn-add inline" type="button">
             <span class="glyphicon glyphicon-plus"></span>
         </button>
         <br>
     </div>
+@endif
 </div>
+
 <br>
 
 <div class="form-group">

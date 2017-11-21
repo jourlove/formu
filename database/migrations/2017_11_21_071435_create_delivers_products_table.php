@@ -17,7 +17,6 @@ class CreateDeliversProductsTable extends Migration
             $table->increments('id');
             $table->integer('deliver_id');
             $table->integer('product_id');
-            $table->timestamps();
         });
     }
 

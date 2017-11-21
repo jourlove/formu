@@ -163,4 +163,9 @@ class ProductsController extends Controller
 
         return redirect('admin/products')->with('flash_message', 'Product deleted!');
     }
+
+    public function ajax($jan) {
+        $product = Product::where('jan', $jan)->first();
+        return ($product ? $product->toJson() : '');
+    }
 }

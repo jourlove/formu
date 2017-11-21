@@ -27,5 +27,9 @@ class Deliver extends Model
      */
     protected $fillable = ['code', 'weight', 'price', 'status'];
 
+    public function products()
+    {
+        return $this->belongsToMany('App\Product','delivers_products','deliver_id');
+    }
     
 }

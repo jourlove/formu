@@ -57,5 +57,7 @@ Route::prefix('admin')->name('admin::')->group(function() {
     Route::resource('products', 'Admin\\ProductsController')->middleware('auth:admin');
     Route::resource('delivers', 'Admin\\DeliversController')->middleware('auth:admin');
     Route::resource('stocks', 'Admin\\StocksController')->middleware('auth:admin');
+
+    Route::get('product/ajax/{id}', 'Admin\ProductsController@ajax')->name('product::ajax');
 });
 Route::apiResource('attachments', 'AttachmentController');

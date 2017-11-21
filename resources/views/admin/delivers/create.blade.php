@@ -55,5 +55,32 @@
             });
 
         });
+
+        function setName(obj) {
+            jan = $(obj).val();
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });            
+            $.ajax({
+                url: '{{ url("admin/product/ajax/") }}/'+jan, 
+                type: 'GET',
+                success: function( response ){
+                    if (response!='') {
+                        product = JSON.parse(response);
+                        $(obj).nextAll('.name:first').val( product.name );
+                        $(obj).nextAll('.pid:first').val( product.id );
+                    }
+                    
+                },
+                error: function( jqXHR ){
+                    console.log( 'Error saving the form (details below)' );
+                    console.log( jqXHR );
+                }
+
+            });                        
+
+        }
     </script>
 @endsection

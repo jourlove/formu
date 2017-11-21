@@ -36,4 +36,9 @@ class Product extends Model
     {
         return $this->morphMany(Attachment::class, 'attachable');
     }    
+
+    public function delivers()
+    {
+        return $this->belongsToMany('App\Deliver','delivers_products','product_id');
+    }
 }
