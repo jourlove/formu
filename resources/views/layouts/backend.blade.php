@@ -59,7 +59,8 @@
                             </ul>
                         </li>
                         @endif
-                        <li><a href="{{ route('admin::forms') }}">{{ __('admin.com.menu.delivers')}}</a></li>
+                        <li><a href="{{ url('/admin/delivers') }}">{{ __('admin.com.menu.delivers')}}</a></li>
+                        <li><a href="{{ url('/admin/stocks') }}">{{ __('admin.com.menu.stocks')}}</a></li>
                     </ul>
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">

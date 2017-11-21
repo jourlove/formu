@@ -21,7 +21,7 @@ return [
             'user_manager' => 'User manager',
             'products' => 'Products',
             'delivers' => 'Delivers',
-
+            'stocks' => 'Stocks',        
         ],    
         'list' => 'List',
         'opration' => 'Opration',
