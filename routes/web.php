@@ -57,9 +57,15 @@ Route::prefix('admin')->name('admin::')->group(function() {
     Route::resource('products', 'Admin\\ProductsController')->middleware('auth:admin');
     Route::resource('delivers', 'Admin\\DeliversController')->middleware('auth:admin');
     Route::resource('stocks', 'Admin\\StocksController')->middleware('auth:admin');
+    Route::resource('orders', 'Admin\\OrdersController')->middleware('auth:admin');
 
     Route::get('product/ajax/{id}', 'Admin\ProductsController@ajax')->name('product::ajax')->middleware('auth:admin');
+
     Route::get('delivers/received/{id}', 'Admin\DeliversController@received')->name('delivers::received')->middleware('auth:admin');
     Route::get('delivers/delivering/{id}', 'Admin\DeliversController@delivering')->name('delivers::delivering')->middleware('auth:admin');
+
+    Route::get('orders/received/{id}', 'Admin\OrdersController@received')->name('orders::received')->middleware('auth:admin');
+    Route::get('orders/delivering/{id}', 'Admin\OrdersController@delivering')->name('orders::delivering')->middleware('auth:admin');
+
 });
 Route::apiResource('attachments', 'AttachmentController');

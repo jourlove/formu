@@ -59,8 +59,9 @@
                             </ul>
                         </li>
                         @endif
-                        <li><a href="{{ url('/admin/delivers') }}">{{ __('admin.com.menu.delivers')}}</a></li>
                         <li><a href="{{ url('/admin/stocks') }}">{{ __('admin.com.menu.stocks')}}</a></li>
+                        <li><a href="{{ url('/admin/delivers') }}">{{ __('admin.com.menu.delivers')}}</a></li>
+                        <li><a href="{{ url('/admin/orders') }}">{{ __('admin.com.menu.orders')}}</a></li>                        
                     </ul>
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">

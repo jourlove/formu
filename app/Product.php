@@ -41,4 +41,10 @@ class Product extends Model
     {
         return $this->belongsToMany('App\Deliver','delivers_products','product_id');
     }
+
+    public function orders()
+    {
+        return $this->belongsToMany('App\Order','orders_products','product_id');
+    }
+
 }

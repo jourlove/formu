@@ -125,8 +125,8 @@ class DeliversController extends Controller
         
         $deliver = Deliver::findOrFail($id);
         $deliver->update($requestData);
-        $deliver->products()->detach();
         
+        $deliver->products()->detach();        
         foreach($requestData['jans'] as $key=>$jan) {
             if ($requestData['pid'][$key]=="") {
                 $product = new Product();
@@ -173,7 +173,7 @@ class DeliversController extends Controller
         }
 
         foreach($products as $key=>$amount) {            
-            $stock = Stock::find($key);
+            $stock = Stock::where('product_id',$key)->first();
             if ($stock) {
                 $stock->amount = $stock->amount + $amount;
                 $stock->save();    

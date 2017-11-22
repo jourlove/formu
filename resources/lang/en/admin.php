@@ -23,6 +23,7 @@ return [
             'user_manager' => 'User manager',
             'products' => 'Products',
             'delivers' => 'Delivers',
+            'orders' => 'Orders',
             'stocks' => 'Stocks',        
         ],    
         'list' => 'List',
