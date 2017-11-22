@@ -6,6 +6,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Stock;
+use App\Product;
 use Illuminate\Http\Request;
 
 class StocksController extends Controller
@@ -38,7 +39,8 @@ class StocksController extends Controller
      */
     public function create()
     {
-        return view('admin.stocks.create');
+        $options = $this->getOptions();
+        return view('admin.stocks.create',compact('options'));
     }
 
     /**
@@ -85,8 +87,8 @@ class StocksController extends Controller
     public function edit($id)
     {
         $stock = Stock::findOrFail($id);
-
-        return view('admin.stocks.edit', compact('stock'));
+        $options = $this->getOptions();
+        return view('admin.stocks.edit', compact('stock','options'));
     }
 
     /**
@@ -124,4 +126,19 @@ class StocksController extends Controller
 
         return redirect('admin/stocks')->with('flash_message', 'Stock deleted!');
     }
+
+    public function getOptions() {
+        $products = Product::all();
+        $products_option = [''=>'-----'];
+        foreach($products as $product) {
+            if (!Stock::where('product_id',$product->id)->first()) {
+                $products_option[$product->id] = $product->name;
+            }            
+        }
+        $options = [
+            'products' => $products_option,
+        ];
+        return $options;
+    }
+    
 }

@@ -14,6 +14,8 @@ return [
             'delete' => 'Delete',
             'update' => 'Update',
             'save' => 'Save',
+            'received' => 'Received',
+            'delivering' => 'delivering',            
         ],
         'menu' => [
             'forms' => 'Forms',

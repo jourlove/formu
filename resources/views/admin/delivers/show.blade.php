@@ -34,7 +34,7 @@
                                     <tr><th> Code </th><td> {{ $deliver->code }} </td></tr>
                                     <tr><th> Weight </th><td> {{ $deliver->weight }} </td></tr>
                                     <tr><th> Price </th><td> {{ $deliver->price }} </td></tr>
-                                    <tr><th> Status </th><td> {{ $deliver->status }} </td></tr>
+                                    <tr><th> Status </th><td> {{ $deliver->statusStr }} </td></tr>
                                 </tbody>
                             </table>
                         </div>
@@ -47,11 +47,19 @@
                                 </thead>                            
                                 <tbody>
                                     @foreach($deliver->products as $product)
-                                    <tr><td>{{$product->jan}}</td><td>{{$product->name}}</td><td>{{$product->pivot->price}}</td></tr>
+                                    <tr><td>{{$product->jan}}</td><td><a href="{{url('admin/products',['id'=>$product->id])}}" target="_blank">{{$product->name}}</a></td><td>{{$product->pivot->price}}</td></tr>
                                     @endforeach
                                 </tbody>
                             </table>
                         </div>
+
+                        <a href="{{ route('admin::delivers::delivering',['id'=>$deliver->id]) }}" class="btn btn-danger btn-sm" title="Delivering">
+                            <i class="fa fa-plus" aria-hidden="true"></i> {{ __('admin.com.action.delivering')}}
+                        </a>
+
+                        <a href="{{ route('admin::delivers::received',['id'=>$deliver->id]) }}" class="btn btn-success btn-sm" title="Received Deliver">
+                            <i class="fa fa-plus" aria-hidden="true"></i> {{ __('admin.com.action.received')}}
+                        </a>
                     </div>
                 </div>
             </div>

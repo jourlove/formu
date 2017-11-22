@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Deliver;
 use Illuminate\Http\Request;
 use App\Product;
+use App\Stock;
 
 class DeliversController extends Controller
 {
@@ -102,7 +103,6 @@ class DeliversController extends Controller
     public function edit($id)
     {
         $deliver = Deliver::findOrFail($id);
-
         return view('admin.delivers.edit', compact('deliver'));
     }
 
@@ -120,7 +120,6 @@ class DeliversController extends Controller
 			'code' => 'required',
 			'weight' => 'required',
 			'price' => 'required',
-			'status' => 'required'
 		]);
         $requestData = $request->all();
         
@@ -157,4 +156,45 @@ class DeliversController extends Controller
 
         return redirect('admin/delivers')->with('flash_message', 'Deliver deleted!');
     }
+
+    public function received($id)
+    {
+        $deliver = Deliver::findOrFail($id);
+        $deliver->status = 2;
+        $deliver->save();
+
+        $products = [];
+        foreach($deliver->products as $product) {
+            if (isset($products[$product->id])) {
+                $products[$product->id] = $products[$product->id] + 1;
+            } else {
+                $products[$product->id] = 1;
+            }
+        }
+
+        foreach($products as $key=>$amount) {            
+            $stock = Stock::find($key);
+            if ($stock) {
+                $stock->amount = $stock->amount + $amount;
+                $stock->save();    
+            } else {
+                $stock = new Stock();
+                $stock->product_id = $key;
+                $stock->amount = $amount;
+                $stock->save();    
+            }
+        }
+
+        return redirect('admin/delivers')->with('flash_message', 'Deliver Received!');
+    }
+
+    public function delivering($id)
+    {
+        $deliver = Deliver::findOrFail($id);
+        $deliver->status = 1;
+        $deliver->save();
+
+        return redirect('admin/delivers')->with('flash_message', 'Deliver Received!');
+    }
+
 }

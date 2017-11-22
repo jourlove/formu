@@ -28,14 +28,14 @@
                             <table class="table table-borderless">
                                 <thead>
                                     <tr>
-                                        <th>ID</th><th>Code</th><th>Weight</th><th>Price</th><th>Actions</th>
+                                        <th>ID</th><th>Code</th><th>Weight</th><th>Price</th><th>Status</th><th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($delivers as $item)
                                     <tr>
                                         <td>{{ $item->id }}</td>
-                                        <td>{{ $item->code }}</td><td>{{ $item->weight }}</td><td>{{ $item->price }}</td>
+                                        <td>{{ $item->code }}</td><td>{{ $item->weight }}</td><td>{{ $item->price }}</td><td>{{ $item->statusStr }}</td>
                                         <td>
                                             <a href="{{ url('/admin/delivers/' . $item->id) }}" title="View Deliver"><button class="btn btn-info btn-xs"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
                                             <a href="{{ url('/admin/delivers/' . $item->id . '/edit') }}" title="Edit Deliver"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>

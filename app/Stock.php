@@ -27,5 +27,9 @@ class Stock extends Model
      */
     protected $fillable = ['product_id', 'amount'];
 
+    public function product()
+    {
+        return $this->hasOne('App\Product','id','product_id');
+    }
     
 }

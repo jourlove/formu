@@ -31,7 +31,7 @@
                                     <tr>
                                         <th>ID</th><td>{{ $stock->id }}</td>
                                     </tr>
-                                    <tr><th> Product Id </th><td> {{ $stock->product_id }} </td></tr><tr><th> Amount </th><td> {{ $stock->amount }} </td></tr>
+                                    <tr><th> Product</th><td> {{ $stock->product->name }} </td></tr><tr><th> Amount </th><td> {{ $stock->amount }} </td></tr>
                                 </tbody>
                             </table>
                         </div>
