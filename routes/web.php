@@ -21,8 +21,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('products', 'Front\ProductController@index')->name('products');
     Route::get('product/{id}', 'Front\ProductController@show')->name('product::show');
     
-    Route::get('home', 'Front\ProductController@index')->name('home');
-    Route::get('/', 'Front\ProductController@index');
+    Route::get('home', 'HomeController@index')->name('home');
+    Route::get('/', 'HomeController@index');
 });
 
 //Super admin
